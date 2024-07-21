@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: be2ec90d8563e9f468c1c5e3f1aafcbd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FONTSPRING DEMO - Geon Expanded Light
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4297f6eccaef00f4cb914ce5915b253b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

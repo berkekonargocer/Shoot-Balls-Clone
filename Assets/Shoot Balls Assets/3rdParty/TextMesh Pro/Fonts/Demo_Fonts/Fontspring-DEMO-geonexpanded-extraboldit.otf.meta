@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3e4a20a7f4724ea4cbf3f5e0ba3fc6b2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FONTSPRING DEMO - Geon Expanded ExtraBold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 69f37efe03a4227468bba062d738ac04, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

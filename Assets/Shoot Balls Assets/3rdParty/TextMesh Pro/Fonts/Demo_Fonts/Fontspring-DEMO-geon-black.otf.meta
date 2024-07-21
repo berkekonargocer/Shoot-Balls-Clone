@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d79195a71f24e6b4bb6331f1277a3403
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FONTSPRING DEMO - Geon Black
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3785e4e36488ebb46a76dff19bd1fc2d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
