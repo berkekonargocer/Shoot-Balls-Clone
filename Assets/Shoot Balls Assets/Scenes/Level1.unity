@@ -14711,7 +14711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1586944655}
-  followOffset: {x: 0.5, y: 4.95, z: -3.4}
+  followOffsetZ: 0
+  autoSceneOffset: 0
 --- !u!1001 &2061030231
 PrefabInstance:
   m_ObjectHideFlags: 0
