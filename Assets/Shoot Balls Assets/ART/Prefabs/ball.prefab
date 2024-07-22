@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 5467400647970684754}
   - component: {fileID: 5841256177519423783}
   - component: {fileID: 5487818482846556009}
+  - component: {fileID: 6164526665266491385}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -382,3 +383,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fd49fff74c64548bed13ccba2371e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &6164526665266491385
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5827912574173699719}
+  m_Material: {fileID: 13400000, guid: 947eca0dade39cb44aa77bbbece94bd1, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25305188
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
