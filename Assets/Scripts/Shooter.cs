@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+
+    [SerializeField] BasketballBar basketballBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class Shooter : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void GetBall() {
+        Basketball ball = basketballBar.GetBasketball();
+        ball.transform.position = transform.position;
     }
 }
