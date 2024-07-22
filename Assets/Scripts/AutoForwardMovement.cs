@@ -20,11 +20,12 @@ public class AutoForwardMovement : MonoBehaviour
 
     Vector2 _moveDirection;
 
-    const float MAX_X_POSITION = 2.6f;
+    const float MAX_X_POSITION_LEFT = 2.6f;
+    const float MAX_X_POSITION_RIGHT = 1.6f;
     const float VERTICAL_MOVEMENT_SPEED_MULTIPLIER = 2.0f;
     const float HORIZONTAL_MOVEMENT_SPEED_MULTIPLIER = 1.0f;
 
-    public State CharState { get; private set; } = State.MOVING;
+    public State CharState { get; private set; } = State.IDLE;
 
 
     void OnEnable() {
@@ -80,18 +81,11 @@ public class AutoForwardMovement : MonoBehaviour
         return moveDirection;
     }
 
-    //void ApplyMovement() {
-    //    //_objectRigidbody.AddForce(GetMovementDirection(), ForceMode.Force);
-    //    _objectRigidbody.velocity = GetMovementDirection();
-    //    transform.position = new Vector3(Mathf.Clamp(transform.position.x, -MAX_X_POSITION, MAX_X_POSITION), transform.position.y, transform.position.z);
-    //}
-
     void ApplyMovement() {
         Vector3 moveDirection = GetMovementDirection();
         Vector3 newPosition = transform.position + moveDirection;
 
-        // Clamp the x position
-        newPosition.x = Mathf.Clamp(newPosition.x, -MAX_X_POSITION, MAX_X_POSITION);
+        newPosition.x = Mathf.Clamp(newPosition.x, -MAX_X_POSITION_LEFT, MAX_X_POSITION_RIGHT);
 
         transform.position = newPosition;
     }
