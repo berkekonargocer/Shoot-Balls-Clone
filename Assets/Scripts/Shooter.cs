@@ -16,19 +16,7 @@ public class Shooter : MonoBehaviour
     RaycastHit[] _targetables = new RaycastHit[1];
 
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
-    const float HOOP_FOLLOW_SPEED = 7.5f;
-
-
-    void Start() {
-
-    }
-
-    void Update() {
-        if (_targetables[0].transform != null)
-        {
-            _targetables[0].transform.position = Vector3.Lerp(_targetables[0].transform.position, transform.position + new Vector3(0, 0, 10), HOOP_FOLLOW_SPEED * Time.deltaTime);
-        }
-    }
+    
 
     void GetBall() {
         _currentBall = basketballBar.GetBasketball(ballHoldPosition);
@@ -66,7 +54,7 @@ public class Shooter : MonoBehaviour
             Vector3 targetPosition = targetable.OnTargeted(transform);
             Vector3 movingOffset = Vector3.forward * .5f;
             Vector3 newPosition = Vector3.Lerp(startPosition, targetPosition + movingOffset, lerpAmount);
-            Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * 2.4f;
+            Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * 2.75f;
             ball.transform.position = newPosition + arc;
 
             yield return null;

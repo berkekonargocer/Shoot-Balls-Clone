@@ -10,10 +10,10 @@ public class BasketballHoop : MonoBehaviour, ITargetable
     [SerializeField] float pointsToScore;
     [SerializeField] TextMeshPro pointText;
     [SerializeField] Vector3 scaleAnimVector = new Vector3(1.2f, 0.9f, 1f);
-
     [SerializeField] LayerMask defaultLayer;
-
     public bool IsTargeted { get; private set; } = false;
+
+    const float FOLLOW_PLAYER_SPEED = 7.5f;
 
 
     public Vector3 OnTargeted(Transform player) {
@@ -22,6 +22,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
             IsTargeted = true;
             StartCoroutine(FollowPlayer(player));
         }
+
         return targetTransform.position;
     }
 
@@ -51,6 +52,13 @@ public class BasketballHoop : MonoBehaviour, ITargetable
     }
 
     IEnumerator FollowPlayer(Transform player) {
+        float followDuration = 4.0f;
 
+        while (followDuration > 0)
+        {
+            transform.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, 0, 10), FOLLOW_PLAYER_SPEED * Time.deltaTime);
+            followDuration -= Time.deltaTime;
+            yield return null;
+        }
     }
 }

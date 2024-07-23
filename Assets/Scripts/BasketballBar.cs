@@ -49,7 +49,7 @@ public class BasketballBar : MonoBehaviour
         }
 
         newBall.transform.localScale = Vector3.zero;
-        newBall.transform.DOScale(1, instantiateBallScaleDuration).OnComplete(ReorderBalls);
+        newBall.transform.DOScale(new Vector3(0.875f, 0.875f, 0.875f), instantiateBallScaleDuration).OnComplete(ReorderBalls);
     }
 
     void ReorderBalls() {

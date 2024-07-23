@@ -760,6 +760,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6605433989292852285, guid: 9db84daa580df7646aa491b8c0578f9d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605433989292852285, guid: 9db84daa580df7646aa491b8c0578f9d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605433989292852285, guid: 9db84daa580df7646aa491b8c0578f9d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605433989292852285, guid: 9db84daa580df7646aa491b8c0578f9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -12116,8 +12128,8 @@ MonoBehaviour:
   targetableLayer:
     serializedVersion: 2
     m_Bits: 64
-  shootSpeed: 1
   <ShootDistance>k__BackingField: 10
+  shootSpeed: 1
 --- !u!1 &1588948465
 GameObject:
   m_ObjectHideFlags: 0
