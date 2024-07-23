@@ -3496,6 +3496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 696509353}
     m_Modifications:
+    - target: {fileID: 742373320331274185, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
+      propertyPath: pointAmount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3992179996145119549, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6598,7 +6602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115162871669440942, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.96
+      value: 42.57
       objectReference: {fileID: 0}
     - target: {fileID: 2115162871669440942, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6630,7 +6634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5098391833241250283, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: pointsToScore
-      value: 10
+      value: 7.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12175,13 +12179,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basketballBar: {fileID: 1495017315}
+  playerAnimator: {fileID: 1586944661}
   ballHoldPosition: {fileID: 300582970}
   targetableCheckPosition: {fileID: 1339934008}
   targetableLayer:
     serializedVersion: 2
     m_Bits: 64
-  <ShootDistance>k__BackingField: 10
-  shootSpeed: 1
+  <ShootDistance>k__BackingField: 12
 --- !u!1 &1588948465
 GameObject:
   m_ObjectHideFlags: 0
@@ -13931,6 +13935,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 696509353}
     m_Modifications:
+    - target: {fileID: 742373320331274185, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
+      propertyPath: pointAmount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3992179996145119549, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -17197,6 +17205,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 418888028}
     m_Modifications:
+    - target: {fileID: 555990345312700645, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: m_fontSize
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 555990345312700645, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 845162904191693506, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -17341,6 +17357,10 @@ PrefabInstance:
     - target: {fileID: 5664141331075994633, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
       propertyPath: m_Name
       value: Stickman
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664141331075994633, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17577,9 +17597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2173ed005ad2bd34191c0094b4f1e11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpDuration: 5
   targetTransform: {fileID: 1076375521}
   speedAmountText: {fileID: 91479194}
-  powerUpAmount: 2
+  powerUpAmount: 20
   hitParticleEffect: {fileID: 75708140}
 --- !u!65 &5537778443652755126
 BoxCollider:

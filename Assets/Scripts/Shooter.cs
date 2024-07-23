@@ -1,26 +1,30 @@
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
     [SerializeField] BasketballBar basketballBar;
+    [SerializeField] PlayerAnimator playerAnimator;
     [SerializeField] Transform ballHoldPosition;
     [SerializeField] Transform targetableCheckPosition;
     [SerializeField] LayerMask targetableLayer;
-
-    [field: SerializeField] public float ShootDistance { get; set; } = 10;
-    [SerializeField] float shootSpeed = 2;
+    public float ShootDuration { get; private set; } = 0.6f;
+    [field: SerializeField] public float ShootDistance { get; set; } = 12;
 
     Basketball _currentBall;
     RaycastHit[] _targetables = new RaycastHit[1];
 
+    const float BASE_SHOOT_DURATION = 0.6f;
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
-    
+
+    public void ChangeShootDuration(float changeAmount, float changeDuration) {
+        StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
+    }
 
     void GetBall() {
         _currentBall = basketballBar.GetBasketball(ballHoldPosition);
-        _currentBall.transform.DOLocalMove(Vector3.zero, 0.18f);
+        _currentBall.transform.DOLocalMove(Vector3.zero, 0.18f / PlayerAnimator.BASE_ANIMATOR_SPEED);
     }
 
     void Shoot() {
@@ -32,19 +36,26 @@ public class Shooter : MonoBehaviour
             StartCoroutine(LerpBallToTargetCoroutine(targetable));
             return;
         }
-        
-        ThrowBall();
+
+        ThrowBall(_currentBall);
     }
 
-    void ThrowBall() {
-        _currentBall.StartShrinking();
-        _currentBall.transform.parent = null;
-        Rigidbody ballRigidbody = _currentBall.gameObject.AddComponent<Rigidbody>();
-        ballRigidbody.AddForce(transform.forward * shootSpeed * FREE_SHOOT_SPEED_MULTIPLIER, ForceMode.Impulse);
+    void ThrowBall(Basketball ball) {
+        ball.StartShrinking();
+        ball.transform.parent = null;
+        Rigidbody ballRigidbody = ball.gameObject.AddComponent<Rigidbody>();
+        ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER, ForceMode.Impulse);
+    }
+
+    IEnumerator ChangeShootDurationCoroutine(float changeAmount, float changeDuration) {
+        ShootDuration -= changeAmount;
+        playerAnimator.IncrementAnimatorSpeed(changeAmount);
+        yield return new WaitForSeconds(changeDuration);
+        ShootDuration = BASE_SHOOT_DURATION;
+        playerAnimator.SetAnimatorSpeed(PlayerAnimator.BASE_ANIMATOR_SPEED);
     }
 
     IEnumerator LerpBallToTargetCoroutine(ITargetable targetable) {
-        float duration = .5f;
         float _time = 0;
 
         Basketball ball = _currentBall;
@@ -52,24 +63,36 @@ public class Shooter : MonoBehaviour
 
         Vector3 startPosition = ball.transform.position;
 
-        while (_time < duration)
+        while (_time < ShootDuration)
         {
             _time += Time.deltaTime;
-            float lerpAmount = _time / duration;
-            
+            float lerpAmount = _time / ShootDuration;
+
+            if (targetable == null)
+            {
+                ThrowBall(ball);
+                break;
+            }
+
             Vector3 targetPosition = targetable.OnTargeted(transform);
             Vector3 movingOffset = Vector3.forward * .5f;
             Vector3 endPosition = targetable.IsMoving ? targetPosition + movingOffset : targetPosition;
 
             Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, lerpAmount);
-            
+
             Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * targetable.ArcAmount;
-            
-            ball.transform.position = newPosition + arc;
+
+            if (ball != null)
+            {
+                ball.transform.position = newPosition + arc; 
+            }
 
             yield return null;
         }
 
-        targetable.OnReachedToTarget(ball);
+        if (targetable != null || ball != null)
+        {
+            targetable.OnReachedToTarget(ball);
+        }
     }
 }

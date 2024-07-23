@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     Animator _playerAnimator;
-
+    public const float BASE_ANIMATOR_SPEED = 0.95f;
 
     void OnEnable() {
+        SetAnimatorSpeed(0.95f);
         //GameManager.Instance.OnWinGame += PlayWinGameAnimation;
         //GameManager.Instance.OnLoseGame += PlayLoseGameAnimation;
         GameManager.Instance.OnStartGame += PlayMovingAnimation;
@@ -22,6 +23,13 @@ public class PlayerAnimator : MonoBehaviour
         _playerAnimator = GetComponent<Animator>();
     }
 
+    public void SetAnimatorSpeed(float speed) {
+        _playerAnimator.speed = speed;
+    }
+
+    public void IncrementAnimatorSpeed(float incrementAmount) {
+        _playerAnimator.speed += incrementAmount;
+    }
 
     public void PlayPointCollectAnimation() {
         _playerAnimator?.SetTrigger("pointCollected");

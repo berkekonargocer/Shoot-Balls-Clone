@@ -1,7 +1,6 @@
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BasketballHoop : MonoBehaviour, ITargetable
@@ -18,6 +17,10 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
     const float FOLLOW_PLAYER_SPEED = 7.5f;
 
+    void Awake() {
+        pointText.text = pointsToScore.ToString();
+    }
+
 
     public Vector3 OnTargeted(Transform player) {
         if (!IsTargeted)
@@ -26,18 +29,24 @@ public class BasketballHoop : MonoBehaviour, ITargetable
             StartCoroutine(FollowPlayer(player));
         }
 
-        return targetTransform.position;
+        if (targetTransform != null)
+        {
+            return targetTransform.position;
+        }
+
+        return Vector3.forward;
     }
 
     public void OnReachedToTarget(Basketball ball) {
+        if (ball == null)
+            return;
+
         ball.transform.position = targetTransform.position;
         ball.StartShrinking();
-
-        Rigidbody ballRigidbody = ball.AddComponent<Rigidbody>();
+        ScorePoint(ball);
+        Rigidbody ballRigidbody = ball.transform.gameObject.AddComponent<Rigidbody>();
 
         BounceBall(ballRigidbody);
-
-        ScorePoint(ball);
 
         if (pointsToScore <= 0)
         {
@@ -78,7 +87,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
         while (followDuration > 0)
         {
-            transform.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, 0, 10), FOLLOW_PLAYER_SPEED * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, 0, 12), FOLLOW_PLAYER_SPEED * Time.deltaTime);
             followDuration -= Time.deltaTime;
             yield return null;
         }
