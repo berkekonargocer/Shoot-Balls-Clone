@@ -1,9 +1,13 @@
+using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class CollectableBall : MonoBehaviour, ITargetable
 {
     [SerializeField] Transform targetPosition;
+
+    [SerializeField] ParticleSystem onHitParticleEffect;
 
     [SerializeField] float pointAmount = 2;
 
@@ -27,8 +31,36 @@ public class CollectableBall : MonoBehaviour, ITargetable
     }
 
     public void OnReachedToTarget(Basketball ball) {
+        onHitParticleEffect.Play();
         pointAmount += ball.Points;
         pointAmountText.text = pointAmount.ToString();
         Destroy(ball.gameObject);
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            MoveInArc(transform, new Vector3(-3.5f, transform.position.y, transform.position.z + 2.5f), 0.5f, 1.0f);
+        }
+    }
+
+    void OnTriggerStay(Collider other) {
+        if (other.CompareTag("BallWay"))
+        {
+            transform.position += Vector3.forward * 0.25f;
+        }
+    }
+
+    void MoveInArc(Transform objectToMove, Vector3 targetPosition, float duration, float arcHeight) {
+        Vector3 midPoint = (objectToMove.position + targetPosition) / 2 + Vector3.up * arcHeight;
+
+        Vector3[] path = new Vector3[] { objectToMove.position, midPoint, targetPosition };
+
+        objectToMove.DOPath(path, duration, PathType.CatmullRom).SetEase(Ease.Linear);
+    }
+
+    IEnumerator MoveToStackPosition() {
+
+        yield return new WaitForSeconds(1);
     }
 }

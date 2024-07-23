@@ -3548,6 +3548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ballenvironment (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6790717505806377087, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9146268737272472625, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
       propertyPath: m_text
       value: 5
@@ -10843,6 +10847,7 @@ Transform:
   - {fileID: 198480949}
   - {fileID: 1472956841}
   - {fileID: 1292907400}
+  - {fileID: 2138210778}
   m_Father: {fileID: 222106564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363809336
@@ -13987,6 +13992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ballenvironment (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6790717505806377087, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9146268737272472625, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
       propertyPath: m_text
       value: 5
@@ -16602,6 +16611,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131880394}
   m_CullTransparentMesh: 1
+--- !u!1 &2138210777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2138210778}
+  - component: {fileID: 2138210780}
+  - component: {fileID: 2138210779}
+  m_Layer: 0
+  m_Name: Ball Way
+  m_TagString: BallWay
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2138210778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138210777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5, y: 0.45, z: 61.98}
+  m_LocalScale: {x: 1, y: 1, z: 40.76066}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1346990631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2138210779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138210777}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2138210780
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138210777}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &543450652725561405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5686163137537253098, guid: 31e8e873d296d9d48a708e4659716e93, type: 3}
@@ -17122,6 +17193,10 @@ PrefabInstance:
     - target: {fileID: 4336053994936216455, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
       propertyPath: m_Name
       value: ballenvironment
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790717505806377087, guid: e6057a8fcbe6aa748a4744647325e624, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
