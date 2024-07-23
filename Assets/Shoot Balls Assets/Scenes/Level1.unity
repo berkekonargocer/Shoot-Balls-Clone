@@ -534,6 +534,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6545861025827007829, guid: e24f238332ae98844a923d1e3ab4238c, type: 3}
   m_PrefabInstance: {fileID: 75359302}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &75708140 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 845162904191713678, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+  m_PrefabInstance: {fileID: 4471802844432006662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76964946
 GameObject:
   m_ObjectHideFlags: 0
@@ -17192,6 +17197,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 418888028}
     m_Modifications:
+    - target: {fileID: 845162904191693506, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 845162904191713678, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 845162904191743796, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8274569205132529844, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -17254,6 +17271,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5537778443652755125}
+    - targetCorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5537778443652755126}
     - targetCorrespondingSourceObject: {fileID: 840009605558629993, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -17560,6 +17580,28 @@ MonoBehaviour:
   targetTransform: {fileID: 1076375521}
   speedAmountText: {fileID: 91479194}
   powerUpAmount: 2
+  hitParticleEffect: {fileID: 75708140}
+--- !u!65 &5537778443652755126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287746230}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 2.6527405, z: 0.14329444}
+  m_Center: {x: -0.00000017881393, y: 1.3263702, z: 0}
 --- !u!1001 &5773817804774335257
 PrefabInstance:
   m_ObjectHideFlags: 0

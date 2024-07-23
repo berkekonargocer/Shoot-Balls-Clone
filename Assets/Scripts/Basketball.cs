@@ -20,7 +20,7 @@ public class Basketball : MonoBehaviour
     IEnumerator ShrinkCoroutine() {
         yield return new WaitForSeconds(2.0f);
         transform.DOScale(0, 0.35f);
-        Destroy(gameObject, 0.35f);
+        Destroy(gameObject, 0.4f);
     }
 
     void SetPointsText() {

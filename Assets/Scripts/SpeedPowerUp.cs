@@ -6,6 +6,7 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
     [SerializeField] Transform targetTransform;
     [SerializeField] TextMeshPro speedAmountText;
     [SerializeField] float powerUpAmount = 2.0f;
+    [SerializeField] ParticleSystem hitParticleEffect;
 
     public float ArcAmount { get; private set; } = 1.0f;
     public bool IsMoving { get; private set; } = false;
@@ -19,6 +20,7 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
     public void OnReachedToTarget(Basketball ball) {
         powerUpAmount += ball.Points;
         speedAmountText.text = $"+{powerUpAmount}";
+        hitParticleEffect.Play();
         Destroy(ball.gameObject);
     }
 }
