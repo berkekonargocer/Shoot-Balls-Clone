@@ -6600,6 +6600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5098391833241250283, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
+      propertyPath: pointsToScore
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11744,6 +11748,11 @@ MonoBehaviour:
   - {fileID: 1715169624}
   - {fileID: 1527080317}
   - {fileID: 2487470915897612335}
+  <BallPoints>k__BackingField:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
 --- !u!1 &1499969802
 GameObject:
   m_ObjectHideFlags: 3
@@ -16591,6 +16600,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5098391833241250283, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
+      propertyPath: pointsToScore
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5116940200932417404, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -17250,7 +17263,7 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 1339934008}
     - targetCorrespondingSourceObject: {fileID: 5030734274900577971, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1495017314}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5664141331075994633, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}

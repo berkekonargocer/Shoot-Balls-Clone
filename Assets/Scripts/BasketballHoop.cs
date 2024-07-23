@@ -1,53 +1,56 @@
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BasketballHoop : MonoBehaviour, ITargetable
 {
     [SerializeField] Transform targetTransform;
+    [SerializeField] float pointsToScore;
+    [SerializeField] TextMeshPro pointText;
+    [SerializeField] Vector3 scaleAnimVector = new Vector3(1.2f, 0.9f, 1f);
 
-    float _time = 0;
+    [SerializeField] LayerMask defaultLayer;
 
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void OnTargeted(Basketball ball, float shootSpeed) {
-        ball.transform.parent = null;
-        _time = 0;
-        StartCoroutine(LerpToTargetCoroutine(ball, shootSpeed));
-    }
+    public bool IsTargeted { get; private set; } = false;
 
 
-    IEnumerator LerpToTargetCoroutine(Basketball ball, float shootSpeed) {
-        float duration = .5f; // You can adjust this duration for the desired speed
-        float _time = 0; // Reset time at the start of the coroutine
-
-        Vector3 startPosition = ball.transform.position;
-        Vector3 targetPosition = targetTransform.position;
-
-        while (_time < duration)
+    public Vector3 OnTargeted(Transform player) {
+        if (!IsTargeted)
         {
-            _time += Time.deltaTime;
-            float lerpAmount = _time / duration;
-
-            Vector3 newPosition = Vector3.Lerp(startPosition, targetPosition, lerpAmount);
-            Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * 2; // Adjust arc height with shootSpeed
-            ball.transform.position = newPosition + arc;
-
-            yield return null;
+            IsTargeted = true;
+            StartCoroutine(FollowPlayer(player));
         }
+        return targetTransform.position;
+    }
 
+    public void OnReachedToTarget(Basketball ball) {
         ball.transform.position = targetTransform.position;
 
         Rigidbody ballRigidbody = ball.AddComponent<Rigidbody>();
+
+        int randomAngle = Random.Range(-30, 31);
+        Vector3 bounceDirection = -transform.forward + new Vector3(randomAngle, 0, 0).normalized;
+        ballRigidbody.AddForce(bounceDirection * 3.5f, ForceMode.Impulse);
+
+        pointsToScore -= ball.Points;
+
+        if (pointsToScore <= 0)
+        {
+            gameObject.layer = defaultLayer;
+            pointsToScore = 0;
+            pointText.text = pointsToScore.ToString();
+            transform.DOScale(0, 0.2f);
+            Destroy(gameObject, 0.25f);
+            return;
+        }
+
+        transform.DOScale(scaleAnimVector, 0.1f).OnComplete(() => transform.DOScale(Vector3.one, 0.1f));
+        pointText.text = pointsToScore.ToString();
+    }
+
+    IEnumerator FollowPlayer(Transform player) {
+
     }
 }

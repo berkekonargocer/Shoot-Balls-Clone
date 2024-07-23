@@ -14,6 +14,9 @@ public class BasketballBar : MonoBehaviour
     [SerializeField] Transform[] ballPositions;
     [SerializeField] List<Basketball> basketballs = new List<Basketball>();
 
+    [field: SerializeField] public float[] BallPoints { get; set; } = { 0.5f, 0.5f, 0.5f, 0.5f};
+    int _currentSpawnIndex = 0;
+
     void Start() {
 
     }
@@ -33,7 +36,18 @@ public class BasketballBar : MonoBehaviour
 
     void CreateNewBall() {
         Basketball newBall = Instantiate(basketballPrefab, ballPositions[3].transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), ballPositions[3].transform).GetComponent<Basketball>();
+        newBall.SetPoints(BallPoints[_currentSpawnIndex]);
         basketballs.Add(newBall);
+
+        if (_currentSpawnIndex < BallPoints.Length - 1)
+        {
+            _currentSpawnIndex++;
+        }
+        else
+        {
+            _currentSpawnIndex = 0;
+        }
+
         newBall.transform.localScale = Vector3.zero;
         newBall.transform.DOScale(1, instantiateBallScaleDuration).OnComplete(ReorderBalls);
     }

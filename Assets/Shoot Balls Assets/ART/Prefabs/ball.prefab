@@ -383,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fd49fff74c64548bed13ccba2371e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsText: {fileID: 7955304588589650190}
+  points: 0.5
 --- !u!135 &6164526665266491385
 SphereCollider:
   m_ObjectHideFlags: 0

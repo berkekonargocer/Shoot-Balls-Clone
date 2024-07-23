@@ -1,4 +1,8 @@
+using UnityEngine;
+
 public interface ITargetable
 {
-    public void OnTargeted(Basketball ball, float shootSpeed);
+    public bool IsTargeted { get; }
+    public Vector3 OnTargeted(Transform player);
+    public void OnReachedToTarget(Basketball ball);
 }
