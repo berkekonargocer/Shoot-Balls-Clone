@@ -32,7 +32,12 @@ public class Shooter : MonoBehaviour
             StartCoroutine(LerpBallToTargetCoroutine(targetable));
             return;
         }
+        
+        ThrowBall();
+    }
 
+    void ThrowBall() {
+        _currentBall.StartShrinking();
         _currentBall.transform.parent = null;
         Rigidbody ballRigidbody = _currentBall.gameObject.AddComponent<Rigidbody>();
         ballRigidbody.AddForce(transform.forward * shootSpeed * FREE_SHOOT_SPEED_MULTIPLIER, ForceMode.Impulse);
@@ -51,10 +56,15 @@ public class Shooter : MonoBehaviour
         {
             _time += Time.deltaTime;
             float lerpAmount = _time / duration;
+            
             Vector3 targetPosition = targetable.OnTargeted(transform);
             Vector3 movingOffset = Vector3.forward * .5f;
-            Vector3 newPosition = Vector3.Lerp(startPosition, targetPosition + movingOffset, lerpAmount);
-            Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * 2.75f;
+            Vector3 endPosition = targetable.IsMoving ? targetPosition + movingOffset : targetPosition;
+
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, lerpAmount);
+            
+            Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * targetable.ArcAmount;
+            
             ball.transform.position = newPosition + arc;
 
             yield return null;

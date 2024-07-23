@@ -945,6 +945,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89619006}
   m_CullTransparentMesh: 1
+--- !u!114 &91479194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 555990345312700645, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+  m_PrefabInstance: {fileID: 4471802844432006662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &96949800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5324,7 +5335,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.388
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -8137,6 +8148,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6570593941598874079, guid: 8ba437189f01d5243b510406a87c1385, type: 3}
   m_PrefabInstance: {fileID: 1075475607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1076375520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1076375521}
+  m_Layer: 0
+  m_Name: Shoot Target Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1076375521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076375520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.91, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5537778443652755122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079581649
 GameObject:
   m_ObjectHideFlags: 0
@@ -10251,6 +10293,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272385325}
   m_CullTransparentMesh: 1
+--- !u!1 &1287746230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+  m_PrefabInstance: {fileID: 4471802844432006662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1289486516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17193,10 +17240,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: greengate
       objectReference: {fileID: 0}
+    - target: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8274569205132529844, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076375521}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5537778443652755125}
     - targetCorrespondingSourceObject: {fileID: 840009605558629993, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -17488,6 +17545,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8274569205132529844, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
   m_PrefabInstance: {fileID: 4471802844432006662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5537778443652755125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287746230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173ed005ad2bd34191c0094b4f1e11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 1076375521}
+  speedAmountText: {fileID: 91479194}
+  powerUpAmount: 2
 --- !u!1001 &5773817804774335257
 PrefabInstance:
   m_ObjectHideFlags: 0
