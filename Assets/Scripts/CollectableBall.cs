@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -9,10 +8,11 @@ public class CollectableBall : MonoBehaviour, ITargetable
 
     [SerializeField] ParticleSystem onHitParticleEffect;
 
-    [SerializeField] float pointAmount = 2;
+    [field: SerializeField] public float PointAmount { get; private set; } = 2;
 
     [SerializeField] TextMeshPro pointAmountText;
 
+    [SerializeField] LayerMask defaultLayer;
 
     public float ArcAmount { get; private set; } = 0.8f;
     public bool IsMoving { get; private set; } = false;
@@ -20,7 +20,7 @@ public class CollectableBall : MonoBehaviour, ITargetable
 
 
     void Awake() {
-        pointAmountText.text = pointAmount.ToString();    
+        pointAmountText.text = PointAmount.ToString();
     }
 
     public Vector3 OnTargeted(Transform player) {
@@ -32,15 +32,21 @@ public class CollectableBall : MonoBehaviour, ITargetable
 
     public void OnReachedToTarget(Basketball ball) {
         onHitParticleEffect.Play();
-        pointAmount += ball.Points;
-        pointAmountText.text = pointAmount.ToString();
+        PointAmount += ball.Points;
+        pointAmountText.text = PointAmount.ToString();
         Destroy(ball.gameObject);
     }
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
         {
+            gameObject.layer = defaultLayer;
             MoveInArc(transform, new Vector3(-3.5f, transform.position.y, transform.position.z + 2.5f), 0.5f, 1.0f);
+        }
+
+        if (other.CompareTag("BallStacker"))
+        {
+            other.transform.gameObject.GetComponent<BallStacker>().AddToStack(this);
         }
     }
 
@@ -57,10 +63,5 @@ public class CollectableBall : MonoBehaviour, ITargetable
         Vector3[] path = new Vector3[] { objectToMove.position, midPoint, targetPosition };
 
         objectToMove.DOPath(path, duration, PathType.CatmullRom).SetEase(Ease.Linear);
-    }
-
-    IEnumerator MoveToStackPosition() {
-
-        yield return new WaitForSeconds(1);
     }
 }
