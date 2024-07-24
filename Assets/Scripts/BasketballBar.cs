@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +18,19 @@ public class BasketballBar : MonoBehaviour
     [field: SerializeField] public float[] BallPoints { get; set; } = { 0.5f, 0.5f, 0.5f, 0.5f};
     int _currentSpawnIndex = 0;
 
-    void Start() {
+    
+    public void SetBallPoints(float[] points) {
+        float[] newPoints = new float[points.Length + BallPoints.Length];
+        Array.Sort(points);
+        
 
-    }
-
-    void Update() {
-
+        for (int i = 0; i < BallPoints.Length; i++)
+        {
+            if (BallPoints[i] < points[i])
+            {
+                BallPoints[i] = points[i];
+            }
+        }
     }
 
     public Basketball GetBasketball(Transform parent) {

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 921d93ab08bcd0448a5ec61723e4d189, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 99cb420f54312ca45a0ba6d129fc18ac, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1124,8 +1124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6.963911, y: 1.369778, z: 1.5256021}
+  m_Center: {x: 2.9819555, y: 0.18488902, z: 0.1193371}
 --- !u!33 &134333426
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16872,8 +16872,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.9825339}
+  m_Center: {x: 0, y: 0, z: -0.008733044}
 --- !u!33 &2138210780
 MeshFilter:
   m_ObjectHideFlags: 0

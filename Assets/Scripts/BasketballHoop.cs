@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BasketballHoop : MonoBehaviour, ITargetable
 {
+    public event Action<float> OnScored;
+
     [SerializeField] Transform targetTransform;
     [SerializeField] float pointsToScore;
     [SerializeField] TextMeshPro pointText;
@@ -16,6 +20,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
     public bool IsTargeted { get; private set; } = false;
 
     const float FOLLOW_PLAYER_SPEED = 7.5f;
+
 
     void Awake() {
         pointText.text = pointsToScore.ToString();
@@ -43,10 +48,10 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
         ball.transform.position = targetTransform.position;
         ball.StartShrinking();
-        ScorePoint(ball);
-        Rigidbody ballRigidbody = ball.transform.gameObject.AddComponent<Rigidbody>();
 
-        BounceBall(ballRigidbody);
+        ScorePoint(ball);
+
+        BounceBall(ball);
 
         if (pointsToScore <= 0)
         {
@@ -57,14 +62,16 @@ public class BasketballHoop : MonoBehaviour, ITargetable
         ScoreAnimation();
     }
 
-    void BounceBall(Rigidbody ballRigidbody) {
+    void BounceBall(Basketball ball) {
+        Rigidbody ballRigidbody = ball.transform.gameObject.AddComponent<Rigidbody>();
         int randomAngle = Random.Range(-30, 31);
         Vector3 bounceDirection = -transform.forward + new Vector3(randomAngle, 0, 0).normalized;
         ballRigidbody.AddForce(bounceDirection * 3.5f, ForceMode.Impulse);
     }
 
     void ScorePoint(Basketball ball) {
-        pointsToScore -= ball.Points;
+        pointsToScore -= ball.Point;
+        OnScored?.Invoke(ball.Point);
         pointText.text = pointsToScore.ToString();
     }
 

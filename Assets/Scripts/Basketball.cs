@@ -6,14 +6,14 @@ using UnityEngine;
 public class Basketball : MonoBehaviour
 {
     [SerializeField] TextMeshPro pointsText;
-    public float Points { get; private set; } = 0.5f;
+    public float Point { get; private set; } = 0.5f;
 
     public void StartShrinking() {
         StartCoroutine(ShrinkCoroutine());
     }
 
     public void SetPoints(float points) {
-        Points = points;
+        Point = points;
         SetPointsText();
     }
 
@@ -24,7 +24,7 @@ public class Basketball : MonoBehaviour
     }
 
     void SetPointsText() {
-        pointsText.text = Points.ToString();
+        pointsText.text = Point.ToString();
     }
 
     void OnBecameInvisible() {

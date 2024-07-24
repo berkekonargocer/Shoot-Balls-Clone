@@ -29,7 +29,7 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
     }
 
     public void OnReachedToTarget(Basketball ball) {
-        powerUpAmount += ball.Points;
+        powerUpAmount += ball.Point;
         speedAmountText.text = $"+{powerUpAmount}";
 
         if (hitParticleEffect != null)

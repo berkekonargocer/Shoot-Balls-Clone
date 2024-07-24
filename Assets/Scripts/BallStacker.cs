@@ -13,6 +13,10 @@ public class BallStacker : MonoBehaviour
         ballList.Add(ball);
     }
 
+    public List<CollectableBall> GetStack() {
+        return ballList;
+    }
+
     void MoveInArc(Transform objectToMove, Vector3 targetPosition, float duration, float arcHeight) {
         Vector3 midPoint = (objectToMove.position + targetPosition) / 2 + Vector3.up * arcHeight;
 

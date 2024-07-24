@@ -32,7 +32,7 @@ public class CollectableBall : MonoBehaviour, ITargetable
 
     public void OnReachedToTarget(Basketball ball) {
         onHitParticleEffect.Play();
-        PointAmount += ball.Points;
+        PointAmount += ball.Point;
         pointAmountText.text = PointAmount.ToString();
         Destroy(ball.gameObject);
     }
