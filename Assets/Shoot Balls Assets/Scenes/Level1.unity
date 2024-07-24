@@ -12005,6 +12005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499969803}
   - component: {fileID: 1499969806}
+  - component: {fileID: 1499969807}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -12039,6 +12040,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1499969807
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499969802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BindingMode: 4
+  m_FollowOffset: {x: 1, y: 6, z: -4.45}
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_AngularDampingMode: 0
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+  m_AngularDamping: 0
 --- !u!114 &1527080317 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5487818482846556009, guid: 9db84daa580df7646aa491b8c0578f9d, type: 3}
@@ -13811,7 +13834,7 @@ Transform:
   m_GameObject: {fileID: 1776839807}
   serializedVersion: 2
   m_LocalRotation: {x: 0.31563872, y: -0.07497839, z: 0.023912923, w: 0.9456102}
-  m_LocalPosition: {x: 0.5, y: 4.95, z: -1.81}
+  m_LocalPosition: {x: 1, y: 6, z: -2.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16182,7 +16205,7 @@ Transform:
   m_GameObject: {fileID: 2043406057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3156387, y: -0.07497838, z: 0.023912922, w: 0.94561017}
-  m_LocalPosition: {x: 0.5, y: 4.95, z: -1.81}
+  m_LocalPosition: {x: 1, y: 6, z: -2.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16196,7 +16219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043406057}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ccbe8f1be171ff42ae0bb7bcabb3f59, type: 3}
   m_Name: 
