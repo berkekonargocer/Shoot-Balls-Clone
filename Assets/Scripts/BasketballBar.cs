@@ -1,7 +1,5 @@
-using DG.Tweening;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BasketballBar : MonoBehaviour
@@ -12,24 +10,23 @@ public class BasketballBar : MonoBehaviour
 
     [SerializeField] float instantiateBallScaleDuration = 0.7f;
 
-    [SerializeField] Transform[] ballPositions;
+    [field: SerializeField] public Transform[] BallPositions { get; private set; }
     [SerializeField] List<Basketball> basketballs = new List<Basketball>();
 
     [field: SerializeField] public float[] BallPoints { get; set; } = { 0.5f, 0.5f, 0.5f, 0.5f};
     int _currentSpawnIndex = 0;
 
-    
+
     public void SetBallPoints(float[] points) {
-        float[] newPoints = new float[points.Length + BallPoints.Length];
-        Array.Sort(points);
-        
+        List<float> newPointsList = new List<float>(points.Length + BallPoints.Length);
+        newPointsList.AddRange(BallPoints);
+        newPointsList.AddRange(points);
+
+        newPointsList.Sort((a, b) => b.CompareTo(a));
 
         for (int i = 0; i < BallPoints.Length; i++)
         {
-            if (BallPoints[i] < points[i])
-            {
-                BallPoints[i] = points[i];
-            }
+            BallPoints[i] = newPointsList[i];
         }
     }
 
@@ -43,7 +40,7 @@ public class BasketballBar : MonoBehaviour
     }
 
     void SpawnNewBall() {
-        Basketball newBall = Instantiate(basketballPrefab, ballPositions[3].transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), ballPositions[3].transform).GetComponent<Basketball>();
+        Basketball newBall = Instantiate(basketballPrefab, BallPositions[3].transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), BallPositions[3].transform).GetComponent<Basketball>();
         newBall.SetPoints(BallPoints[_currentSpawnIndex]);
         basketballs.Add(newBall);
 
@@ -56,18 +53,19 @@ public class BasketballBar : MonoBehaviour
             _currentSpawnIndex = 0;
         }
 
+        ReorderBalls();
         SpawnAnimation(newBall);
     }
 
     private void SpawnAnimation(Basketball newBall) {
         newBall.transform.localScale = Vector3.zero;
-        newBall.transform.DOScale(new Vector3(0.875f, 0.875f, 0.875f), instantiateBallScaleDuration).OnComplete(ReorderBalls);
+        newBall.transform.DOScale(new Vector3(0.875f, 0.875f, 0.875f), instantiateBallScaleDuration);
     }
 
     void ReorderBalls() {
         for (int i = 0; i < basketballs.Count; i++)
         {
-            basketballs[i].transform.SetParent(ballPositions[i].transform);
+            basketballs[i].transform.SetParent(BallPositions[i].transform);
             basketballs[i].transform.DOLocalMove(Vector3.zero, reorderDuration);
         }
     }

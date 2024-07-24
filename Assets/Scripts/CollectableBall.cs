@@ -47,6 +47,7 @@ public class CollectableBall : MonoBehaviour, ITargetable
         if (other.CompareTag("BallStacker"))
         {
             other.transform.gameObject.GetComponent<BallStacker>().AddToStack(this);
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
