@@ -12,9 +12,9 @@ public class Basketball : MonoBehaviour
         StartCoroutine(ShrinkCoroutine());
     }
 
-    public void SetPoints(float points) {
-        Point = points;
-        SetPointsText();
+    public void SetPoint(float point) {
+        Point = point;
+        SetPointText();
     }
 
     IEnumerator ShrinkCoroutine() {
@@ -23,7 +23,7 @@ public class Basketball : MonoBehaviour
         Destroy(gameObject, 0.4f);
     }
 
-    void SetPointsText() {
+    void SetPointText() {
         pointsText.text = Point.ToString();
     }
 

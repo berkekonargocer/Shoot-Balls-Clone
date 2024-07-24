@@ -30,6 +30,14 @@ public class BasketballBar : MonoBehaviour
         }
     }
 
+    public Basketball SpawnBall(Vector3 position) {
+        return Instantiate(basketballPrefab, position, Quaternion.Euler(new Vector3(0, 180, 0))).GetComponent<Basketball>();
+    }
+
+    public Basketball SpawnBall(Vector3 position, Transform parent) {
+        return Instantiate(basketballPrefab, position, Quaternion.Euler(new Vector3(0, 180, 0)), parent).GetComponent<Basketball>();
+    }
+
     public Basketball GetBasketball(Transform parent) {
         Basketball ball = basketballs[0];
         ball.transform.SetParent(parent);
@@ -40,8 +48,8 @@ public class BasketballBar : MonoBehaviour
     }
 
     void SpawnNewBall() {
-        Basketball newBall = Instantiate(basketballPrefab, BallPositions[3].transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), BallPositions[3].transform).GetComponent<Basketball>();
-        newBall.SetPoints(BallPoints[_currentSpawnIndex]);
+        Basketball newBall = SpawnBall(BallPositions[3].transform.position, BallPositions[3].transform);
+        newBall.SetPoint(BallPoints[_currentSpawnIndex]);
         basketballs.Add(newBall);
 
         if (_currentSpawnIndex < BallPoints.Length - 1)

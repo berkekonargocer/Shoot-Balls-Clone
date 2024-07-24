@@ -15,11 +15,17 @@ public class Shooter : MonoBehaviour
     Basketball _currentBall;
     RaycastHit[] _targetables = new RaycastHit[1];
 
+    bool _canDoubleShoot = false;
+
     const float BASE_SHOOT_DURATION = 0.6f;
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
 
     public void ChangeShootDuration(float changeAmount, float changeDuration) {
         StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
+    }
+
+    public void StartDoubleBallPowerUp(float duration) {
+        StartCoroutine(DoubleBallCoroutine(duration));
     }
 
     void GetBall() {
@@ -30,14 +36,33 @@ public class Shooter : MonoBehaviour
     void Shoot() {
         int hits = Physics.RaycastNonAlloc(targetableCheckPosition.position, targetableCheckPosition.forward, _targetables, ShootDistance, targetableLayer);
 
+
+
+
         if (hits > 0)
         {
             ITargetable targetable = _targetables[0].transform.gameObject.GetComponent<ITargetable>();
-            StartCoroutine(LerpBallToTargetCoroutine(targetable));
+
+            StartCoroutine(LerpBallToTargetCoroutine(_currentBall, targetable, ShootDuration));
+
+            if (_canDoubleShoot)
+            {
+                Basketball secondBall = basketballBar.SpawnBall(_currentBall.transform.position);
+                secondBall.SetPoint(_currentBall.Point);
+                StartCoroutine(LerpBallToTargetCoroutine(secondBall, targetable, ShootDuration + 0.25f));
+            }
+
             return;
         }
 
         ThrowBall(_currentBall);
+
+        if (_canDoubleShoot)
+        {
+            Basketball secondBall = basketballBar.SpawnBall(_currentBall.transform.position);
+            secondBall.SetPoint(_currentBall.Point);
+            ThrowBall(secondBall);
+        }
     }
 
     void ThrowBall(Basketball ball) {
@@ -55,22 +80,30 @@ public class Shooter : MonoBehaviour
         playerAnimator.SetAnimatorSpeed(PlayerAnimator.BASE_ANIMATOR_SPEED);
     }
 
-    IEnumerator LerpBallToTargetCoroutine(ITargetable targetable) {
+    IEnumerator DoubleBallCoroutine(float duration) {
+        _canDoubleShoot = true;
+
+        yield return new WaitForSeconds(duration);
+
+        _canDoubleShoot = false;
+    }
+
+    IEnumerator LerpBallToTargetCoroutine(Basketball ball, ITargetable targetable, float duration) {
         float _time = 0;
 
-        Basketball ball = _currentBall;
-        _currentBall.transform.parent = null;
+        Basketball ballToLerp = ball;
+        ballToLerp.transform.parent = null;
 
-        Vector3 startPosition = ball.transform.position;
+        Vector3 startPosition = ballToLerp.transform.position;
 
-        while (_time < ShootDuration)
+        while (_time < duration)
         {
             _time += Time.deltaTime;
-            float lerpAmount = _time / ShootDuration;
+            float lerpAmount = _time / duration;
 
             if (targetable == null)
             {
-                ThrowBall(ball);
+                ThrowBall(ballToLerp);
                 break;
             }
 
@@ -82,17 +115,17 @@ public class Shooter : MonoBehaviour
 
             Vector3 arc = Vector3.up * Mathf.Sin(lerpAmount * Mathf.PI) * targetable.ArcAmount;
 
-            if (ball != null)
+            if (ballToLerp != null)
             {
-                ball.transform.position = newPosition + arc; 
+                ballToLerp.transform.position = newPosition + arc;
             }
 
             yield return null;
         }
 
-        if (targetable != null || ball != null)
+        if (targetable != null || ballToLerp != null)
         {
-            targetable.OnReachedToTarget(ball);
+            targetable.OnReachedToTarget(ballToLerp);
         }
     }
 }
