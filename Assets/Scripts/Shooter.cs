@@ -18,10 +18,15 @@ public class Shooter : MonoBehaviour
     bool _canDoubleShoot = false;
 
     const float BASE_SHOOT_DURATION = 0.6f;
+    const float BASE_SHOOT_DISTANCE = 12.0f;
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
 
     public void ChangeShootDuration(float changeAmount, float changeDuration) {
         StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
+    }
+
+    public void ChangeShootDistance(float changeAmount, float changeDuration) {
+        StartCoroutine(ChangeShootDistanceCoroutine(changeAmount, changeDuration));
     }
 
     public void StartDoubleBallPowerUp(float duration) {
@@ -35,9 +40,6 @@ public class Shooter : MonoBehaviour
 
     void Shoot() {
         int hits = Physics.RaycastNonAlloc(targetableCheckPosition.position, targetableCheckPosition.forward, _targetables, ShootDistance, targetableLayer);
-
-
-
 
         if (hits > 0)
         {
@@ -78,6 +80,12 @@ public class Shooter : MonoBehaviour
         yield return new WaitForSeconds(changeDuration);
         ShootDuration = BASE_SHOOT_DURATION;
         playerAnimator.SetAnimatorSpeed(PlayerAnimator.BASE_ANIMATOR_SPEED);
+    }
+
+    IEnumerator ChangeShootDistanceCoroutine(float changeAmount, float changeDuration) {
+        ShootDistance += changeAmount;
+        yield return new WaitForSeconds(changeDuration);
+        ShootDistance = BASE_SHOOT_DISTANCE;
     }
 
     IEnumerator DoubleBallCoroutine(float duration) {
