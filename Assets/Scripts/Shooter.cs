@@ -1,25 +1,40 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    public static Action<float> OnScored;
+    public static event Action<float> OnShooterExperienceChanged;
+
     [SerializeField] BasketballBar basketballBar;
     [SerializeField] PlayerAnimator playerAnimator;
     [SerializeField] Transform ballHoldPosition;
     [SerializeField] Transform targetableCheckPosition;
     [SerializeField] LayerMask targetableLayer;
+
     public float ShootDuration { get; private set; } = 0.6f;
     [field: SerializeField] public float ShootDistance { get; set; } = 12;
 
     Basketball _currentBall;
     RaycastHit[] _targetables = new RaycastHit[1];
 
+    float _shooterExperience = 0.00f;
+    int _shooterLevel = 0;
     bool _canDoubleShoot = false;
 
     const float BASE_SHOOT_DURATION = 0.6f;
     const float BASE_SHOOT_DISTANCE = 12.0f;
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
+
+    void OnEnable() {
+        OnScored += IncreaseShooterExperience;
+    }
+
+    void OnDisable() {
+        OnScored -= IncreaseShooterExperience;
+    }
 
     public void ChangeShootDuration(float changeAmount, float changeDuration) {
         StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
@@ -72,6 +87,11 @@ public class Shooter : MonoBehaviour
         ball.transform.parent = null;
         Rigidbody ballRigidbody = ball.gameObject.AddComponent<Rigidbody>();
         ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER * speedMultiplier, ForceMode.Impulse);
+    }
+
+    void IncreaseShooterExperience(float increaseAmount) {
+        _shooterExperience += increaseAmount;
+        OnShooterExperienceChanged?.Invoke(_shooterExperience);
     }
 
     IEnumerator ChangeShootDurationCoroutine(float changeAmount, float changeDuration) {

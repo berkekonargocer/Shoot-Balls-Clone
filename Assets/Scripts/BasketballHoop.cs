@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class BasketballHoop : MonoBehaviour, ITargetable
 {
-    public event Action<float> OnScored;
-
     [SerializeField] Transform targetTransform;
     [SerializeField] float pointsToScore;
     [SerializeField] TextMeshPro pointText;
@@ -75,7 +73,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
     void ScorePoint(Basketball ball) {
         pointsToScore -= ball.Point;
-        OnScored?.Invoke(ball.Point);
+        Shooter.OnScored?.Invoke(ball.Point);
         pointText.text = pointsToScore.ToString();
     }
 
