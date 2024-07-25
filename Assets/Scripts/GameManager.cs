@@ -13,23 +13,18 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public AudioClip LoseGameSFX { get; private set; }
 
     public event Action OnStartGame;
-    public event Action<int> OnLoseGame;
-    public event Action<int> OnWinGame;
+    public event Action<float> OnLoseGame;
+    public event Action<float> OnWinGame;
 
     bool isGameOver = false;
+
+    public float BallPower { get; private set; } = 0.5f;
 
 
     void Awake() {
         InitializeSingleton();
     }
 
-    void OnEnable() {
-
-    }
-
-    void Update() {
-        
-    }
 
     public void StartGame() {
         OnStartGame?.Invoke();
@@ -55,7 +50,6 @@ public class GameManager : MonoBehaviour
     public void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     void InitializeSingleton() {
         if (Instance == null)

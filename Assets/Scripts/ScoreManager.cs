@@ -9,10 +9,12 @@ namespace NOJUMPO
         // --------------------------------- FIELDS --------------------------------
         public static ScoreManager Instance { get; private set; }
 
-        public int Score { get { return _score; } private set { _score = Mathf.Clamp(value, 0, int.MaxValue); } }
-        int _score;
+        public float Score { get { return _score; } private set { _score = Mathf.Clamp(value, 0, float.MaxValue); } }
+        float _score;
 
-        public event Action<int> OnScoreChanged;
+        public event Action<float> OnScoreChanged;
+
+        public float Income { get; private set; } = 25.0f;
 
 
         // ------------------------- UNITY BUILT-IN METHODS ------------------------
@@ -22,17 +24,17 @@ namespace NOJUMPO
 
 
         // ------------------------- CUSTOM PUBLIC METHODS -------------------------
-        public void SetScore(int newScore) {
+        public void SetScore(float newScore) {
             Score = newScore;
             OnScoreChanged?.Invoke(Score);
         }
 
-        public void IncrementScore(int incrementAmount) {
+        public void IncrementScore(float incrementAmount) {
             Score += incrementAmount;
             OnScoreChanged?.Invoke(Score);
         }
 
-        public void DecrementScore(int decrementAmount) {
+        public void DecrementScore(float decrementAmount) {
             Score -= decrementAmount;
             OnScoreChanged?.Invoke(Score);
         }
