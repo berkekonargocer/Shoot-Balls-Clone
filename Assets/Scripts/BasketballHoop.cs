@@ -47,6 +47,9 @@ public class BasketballHoop : MonoBehaviour, ITargetable
         if (ball == null)
             return;
 
+        if (targetTransform == null)
+            return;
+
         ball.transform.position = targetTransform.position;
         ball.StartShrinking();
 
