@@ -14,6 +14,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
     [SerializeField] TextMeshPro pointText;
     [SerializeField] Vector3 scaleAnimVector = new Vector3(1.2f, 0.9f, 1f);
     [SerializeField] LayerMask defaultLayer;
+    [SerializeField] bool canMove;
 
     public float ArcAmount { get; private set; } = 2.75f;
     public bool IsMoving { get; private set; } = false;
@@ -28,7 +29,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
 
     public Vector3 OnTargeted(Transform player) {
-        if (!IsTargeted)
+        if (!IsTargeted && canMove)
         {
             IsTargeted = true;
             StartCoroutine(FollowPlayer(player));
