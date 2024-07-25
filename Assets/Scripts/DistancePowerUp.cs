@@ -47,6 +47,7 @@ public class DistancePowerUp : MonoBehaviour, ITargetable
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
         {
+            gameObject.GetComponent<Collider>().enabled = false;
             other.GetComponent<Shooter>().ChangeShootDistance(powerUpAmount, powerUpDuration);
             transform.DOScale(0, 0.15f);
             Destroy(gameObject, 0.2f);

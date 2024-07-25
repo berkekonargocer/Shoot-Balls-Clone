@@ -3777,6 +3777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: greengate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3786,7 +3790,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 502620320}
+      addedObject: {fileID: 502620324}
+    - targetCorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 502620323}
     - targetCorrespondingSourceObject: {fileID: 840009605558629993, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -3820,7 +3827,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8763719506095753742, guid: 7423c9bababf2c44fb01ebf848fdd361, type: 3}
   m_PrefabInstance: {fileID: 502620315}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &502620320
+--- !u!65 &502620323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502620319}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 2.6527405, z: 0.14329444}
+  m_Center: {x: -0.00000017881393, y: 1.3263702, z: 0}
+--- !u!114 &502620324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3829,12 +3857,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 502620319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2173ed005ad2bd34191c0094b4f1e11d, type: 3}
+  m_Script: {fileID: 11500000, guid: 74226653902879b4ab3446defbc30c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpDuration: 5
   targetTransform: {fileID: 1190543677}
-  speedAmountText: {fileID: 502620318}
+  distanceAmountText: {fileID: 502620318}
   powerUpAmount: 1
   hitParticleEffect: {fileID: 502620317}
 --- !u!1 &502910657 stripped
@@ -6889,7 +6917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115162871669440942, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.57
+      value: 43.89
       objectReference: {fileID: 0}
     - target: {fileID: 2115162871669440942, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6921,7 +6949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5098391833241250283, guid: ed167f2c40a9ff948a9c7884c8640269, type: 3}
       propertyPath: pointsToScore
-      value: 7.5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

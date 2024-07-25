@@ -63,15 +63,15 @@ public class Shooter : MonoBehaviour
         {
             Basketball secondBall = basketballBar.SpawnBall(_currentBall.transform.position);
             secondBall.SetPoint(_currentBall.Point);
-            ThrowBall(secondBall);
+            ThrowBall(secondBall, 0.85f);
         }
     }
 
-    void ThrowBall(Basketball ball) {
+    void ThrowBall(Basketball ball, float speedMultiplier = 1.0f) {
         ball.StartShrinking();
         ball.transform.parent = null;
         Rigidbody ballRigidbody = ball.gameObject.AddComponent<Rigidbody>();
-        ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER, ForceMode.Impulse);
+        ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER * speedMultiplier, ForceMode.Impulse);
     }
 
     IEnumerator ChangeShootDurationCoroutine(float changeAmount, float changeDuration) {
