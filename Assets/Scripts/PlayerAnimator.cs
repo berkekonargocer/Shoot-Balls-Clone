@@ -9,13 +9,13 @@ public class PlayerAnimator : MonoBehaviour
     void OnEnable() {
         SetAnimatorSpeed(0.95f);
         //GameManager.Instance.OnWinGame += PlayWinGameAnimation;
-        //GameManager.Instance.OnLoseGame += PlayLoseGameAnimation;
+        GameManager.Instance.OnLoseGame += PlayLoseGameAnimation;
         GameManager.Instance.OnStartGame += PlayMovingAnimation;
     }
 
     void OnDisable() {
         //GameManager.Instance.OnWinGame -= PlayWinGameAnimation;
-        //GameManager.Instance.OnLoseGame -= PlayLoseGameAnimation;
+        GameManager.Instance.OnLoseGame -= PlayLoseGameAnimation;
         GameManager.Instance.OnStartGame -= PlayMovingAnimation;
     }
 
@@ -59,10 +59,12 @@ public class PlayerAnimator : MonoBehaviour
         _playerAnimator?.SetBool("hasWon", true);
     }
 
-    void PlayLoseGameAnimation(int score) {
-        SetItemAmountParameter(0);
-        Vector3 lookRotation = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
-        transform.LookAt(lookRotation);
-        _playerAnimator?.SetBool("hasLost", true);
+    void PlayLoseGameAnimation(float score) {
+        _playerAnimator?.SetBool("IsMoving", false);
+
+        //SetItemAmountParameter(0);
+        //Vector3 lookRotation = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
+        //transform.LookAt(lookRotation);
+        //_playerAnimator?.SetBool("hasLost", true);
     }
 }
