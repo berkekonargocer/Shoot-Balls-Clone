@@ -13,6 +13,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
     [SerializeField] Vector3 scaleAnimVector = new Vector3(1.2f, 0.9f, 1f);
     [SerializeField] LayerMask defaultLayer;
     [SerializeField] bool canMove;
+    [SerializeField] GameObject[] particles;
 
     public float ArcAmount { get; private set; } = 2.75f;
     public bool IsMoving { get; private set; } = false;
@@ -73,10 +74,21 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
     void ScorePoint(Basketball ball) {
         pointsToScore -= ball.Point;
-        Shooter.OnScored?.Invoke(ball.Point);
+        Shooter.OnScored?.Invoke(ball.Point, SpawnParticles());
         pointText.text = pointsToScore.ToString();
     }
 
+    GameObject[] SpawnParticles() {
+        GameObject[] newParticles = new GameObject[particles.Length];
+
+        for (int i = 0; i < particles.Length; i++)
+        {
+            GameObject newParticle = Instantiate(particles[i], particles[i].transform.position, Quaternion.identity);
+            newParticles[i] = newParticle;
+        }
+
+        return newParticles;
+    }
     void ScoreAnimation() {
         transform.DOScale(scaleAnimVector, 0.1f).OnComplete(() => transform.DOScale(Vector3.one, 0.1f));
     }
