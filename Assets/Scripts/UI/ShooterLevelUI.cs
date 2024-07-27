@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class ShooterLevelUI : MonoBehaviour
 {
     [SerializeField] Image shooterLevelSlider;
 
-    [SerializeField] RectTransform movePosition;
+    [SerializeField] RectTransform movePositionRectTransform;
     [SerializeField] Canvas uiCanvas;
 
 
@@ -22,19 +23,21 @@ public class ShooterLevelUI : MonoBehaviour
     void UpdateShooterLevelUI(float points, GameObject[] particles) {
         for (int i = 0; i < particles.Length; i++)
         {
-            MakeUIElement(particles[i]);
-            particles[i].transform.DOMove(movePosition.position, 1.0f);
-            Destroy(particles[i], 1.05f);
+            GameObject particle = particles[i];
+            particle.transform.DOScale(6, 1.0f);
+            particle.transform.DOMove(movePositionRectTransform.transform.position, 1.0f).OnComplete(() => Destroy(particle));
         }
 
         shooterLevelSlider.fillAmount = points;
     }
 
-    void MakeUIElement(GameObject worldElement) {
-        RectTransform rectTransform = worldElement.AddComponent<RectTransform>();
-        rectTransform.anchorMin = Vector2.zero;
-        rectTransform.anchorMax = Vector2.one;
+    Vector3 GetCanvasPosition(GameObject worldElement) {
+        ///TEST CASE 1
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldElement.transform.position);
 
-        rectTransform.transform.SetParent(uiCanvas.transform);
+        RectTransform canvasRect = uiCanvas.gameObject.GetComponent<RectTransform>();
+        Vector2 canvasPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, uiCanvas.worldCamera, out canvasPosition);
+        return canvasPosition;
     }
 }

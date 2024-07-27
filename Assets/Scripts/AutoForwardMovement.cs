@@ -96,6 +96,6 @@ public class AutoForwardMovement : MonoBehaviour
 
     void StopMovement(float score) {
         CharState = State.IDLE;
-        _objectRigidbody.velocity = Vector3.zero;
+        //_objectRigidbody.velocity = Vector3.zero;
     }
 }
