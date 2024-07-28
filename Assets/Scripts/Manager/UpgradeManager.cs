@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
 
-    public event Action OnBallUpgrade;
+    public event Action<Upgradeable> OnBallUpgrade;
     public event Action OnEvolveUpgrade;
     public event Action OnIncomeUpgrade;
 
@@ -21,21 +18,23 @@ public class UpgradeManager : MonoBehaviour
         InitializeSingleton();
     }
 
-    void Start()
-    {
-        
+    void Start() {
+
     }
 
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
 
-    public void UpgradeBall(Upgradeable upgradeable) {
-        currentBallUpgrade = upgradeable;
-        OnBallUpgrade?.Invoke();
+    public void UpgradeBall() {
+        if (currentBallUpgrade.IsMaxLevel)
+            return;
+
+        currentBallUpgrade = currentBallUpgrade.nextUpgrade;
+        OnBallUpgrade?.Invoke(currentBallUpgrade);
     }
+
 
     void InitializeSingleton() {
         if (Instance == null)
