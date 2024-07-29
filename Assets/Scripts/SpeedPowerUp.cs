@@ -46,7 +46,7 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Shooter>().ChangeShootDuration(powerUpAmount / 100, powerUpDuration);
+            other.GetComponent<Shooter>().ChangeShootDuration(powerUpAmount / 100);
             transform.DOScale(0, 0.15f);
             Destroy(gameObject, 0.2f);
         }

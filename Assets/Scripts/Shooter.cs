@@ -41,12 +41,15 @@ public class Shooter : MonoBehaviour
         Short.material = upgradeable.ShooterEvolveMaterial;
     }
 
-    public void ChangeShootDuration(float changeAmount, float changeDuration) {
-        StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
+    public void ChangeShootDuration(float changeAmount) {
+        ShootDuration -= changeAmount;
+        playerAnimator.IncrementAnimatorSpeed(changeAmount);
+        //StartCoroutine(ChangeShootDurationCoroutine(changeAmount, changeDuration));
     }
 
-    public void ChangeShootDistance(float changeAmount, float changeDuration) {
-        StartCoroutine(ChangeShootDistanceCoroutine(changeAmount, changeDuration));
+    public void ChangeShootDistance(float changeAmount) {
+        ShootDistance += changeAmount;
+        //StartCoroutine(ChangeShootDistanceCoroutine(changeAmount, changeDuration));
     }
 
     public void StartDoubleBallPowerUp(float duration) {
@@ -93,7 +96,6 @@ public class Shooter : MonoBehaviour
         Rigidbody ballRigidbody = ball.gameObject.AddComponent<Rigidbody>();
         ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER * speedMultiplier, ForceMode.Impulse);
     }
-
 
 
     IEnumerator ChangeShootDurationCoroutine(float changeAmount, float changeDuration) {

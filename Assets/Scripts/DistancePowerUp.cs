@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DistancePowerUp : MonoBehaviour, ITargetable
 {
-    [SerializeField] float powerUpDuration = 5.0f;
+    //[SerializeField] float powerUpDuration = 5.0f;
     [SerializeField] Transform targetTransform;
     [SerializeField] TextMeshPro distanceAmountText;
     [SerializeField] float powerUpAmount = 1.0f;
@@ -48,7 +48,7 @@ public class DistancePowerUp : MonoBehaviour, ITargetable
         if (other.CompareTag("Player"))
         {
             gameObject.GetComponent<Collider>().enabled = false;
-            other.GetComponent<Shooter>().ChangeShootDistance(powerUpAmount, powerUpDuration);
+            other.GetComponent<Shooter>().ChangeShootDistance(powerUpAmount);
             transform.DOScale(0, 0.15f);
             Destroy(gameObject, 0.2f);
         }

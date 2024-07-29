@@ -28,13 +28,6 @@ public class UpgradeManager : MonoBehaviour
         InitializeSingleton();
     }
 
-    void Start() {
-
-    }
-
-    void Update() {
-
-    }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
         SetUpgrades();

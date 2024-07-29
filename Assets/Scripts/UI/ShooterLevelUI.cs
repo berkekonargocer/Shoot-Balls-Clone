@@ -13,11 +13,13 @@ public class ShooterLevelUI : MonoBehaviour
 
     void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        UpgradeManager.Instance.OnEvolveUpgrade += UpdateLevelBar;
         GameManager.OnShooterExperienceChanged += UpdateShooterLevelUI;
     }
 
     void OnDisable() {
         GameManager.OnShooterExperienceChanged -= UpdateShooterLevelUI;
+        UpgradeManager.Instance.OnEvolveUpgrade -= UpdateLevelBar;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -28,6 +30,10 @@ public class ShooterLevelUI : MonoBehaviour
 
     void SetShooterLevelUI() {
         shooterLevelSlider.fillAmount = GameManager.Instance.ShooterExperience;
+    }
+
+    void UpdateLevelBar(Upgradeable upgradeable) {
+        shooterLevelSlider.fillAmount += 0.1f;
     }
 
     void UpdateShooterLevelUI(float points) {
