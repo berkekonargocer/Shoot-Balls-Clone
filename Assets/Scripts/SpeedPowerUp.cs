@@ -19,6 +19,16 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
         speedAmountText.text = "+" + powerUpAmount.ToString();    
     }
 
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Shooter>().ChangeShootDuration(powerUpAmount / 100);
+            transform.DOScale(0, 0.15f);
+            Destroy(gameObject, 0.2f);
+        }
+    }
+
+
     public Vector3 OnTargeted(Transform player) {
         if (targetTransform != null)
         {
@@ -40,15 +50,6 @@ public class SpeedPowerUp : MonoBehaviour, ITargetable
         if (ball != null)
         {
             Destroy(ball.gameObject); 
-        }
-    }
-
-    void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Shooter>().ChangeShootDuration(powerUpAmount / 100);
-            transform.DOScale(0, 0.15f);
-            Destroy(gameObject, 0.2f);
         }
     }
 }
