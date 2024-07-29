@@ -40,9 +40,15 @@ public class GameManager : MonoBehaviour
         BallPower = upgradeable.currentLevelValue;
     }
 
-    void IncreaseShooterExperience(float increaseAmount) {
+    public void IncreaseShooterExperience(float increaseAmount) {
         ShooterExperience += increaseAmount / 100;
         OnShooterExperienceChanged?.Invoke(ShooterExperience);
+
+        if (ShooterExperience >= 1) {
+            ShooterExperience = 1;
+            _shooterLevel++;
+            UpgradeManager.Instance.UpgradeEvolve();
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {

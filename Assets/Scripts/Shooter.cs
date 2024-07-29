@@ -53,7 +53,8 @@ public class Shooter : MonoBehaviour
     }
 
     public void StartDoubleBallPowerUp(float duration) {
-        StartCoroutine(DoubleBallCoroutine(duration));
+        _canDoubleShoot = true;
+        //StartCoroutine(DoubleBallCoroutine(duration));
     }
 
     void GetBall() {

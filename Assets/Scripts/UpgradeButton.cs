@@ -1,3 +1,4 @@
+using NOJUMPO;
 using UnityEngine;
 
 public class UpgradeButton : MonoBehaviour
@@ -7,7 +8,10 @@ public class UpgradeButton : MonoBehaviour
     }
 
     public void UpgradeEvolve() {
-        UpgradeManager.Instance.UpgradeEvolve();
+        if (ScoreManager.Instance.Score > UpgradeManager.Instance.CurrentEvolveUpgrade.upgradeCost)
+        {
+            GameManager.Instance.IncreaseShooterExperience(10);
+        }
     }
 
     public void UpgradeIncome() {

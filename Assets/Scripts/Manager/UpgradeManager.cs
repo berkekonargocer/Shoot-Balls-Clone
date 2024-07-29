@@ -12,12 +12,12 @@ public class UpgradeManager : MonoBehaviour
     public event Action<Upgradeable> OnEvolveUpgrade;
     public event Action<Upgradeable> OnIncomeUpgrade;
 
+    [field: SerializeField] public Upgradeable CurrentEvolveUpgrade { get; private set; }
     [SerializeField] Upgradeable currentBallUpgrade;
-    [SerializeField] Upgradeable currentEvolveUpgrade;
     [SerializeField] Upgradeable currentIncomeUpgrade;
 
     void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;    
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnDisable() {
@@ -35,7 +35,7 @@ public class UpgradeManager : MonoBehaviour
 
     void SetUpgrades() {
         OnBallUpgrade?.Invoke(currentBallUpgrade);
-        OnEvolveUpgrade?.Invoke(currentEvolveUpgrade);
+        OnEvolveUpgrade?.Invoke(CurrentEvolveUpgrade);
         OnIncomeUpgrade?.Invoke(currentIncomeUpgrade);
     }
 
@@ -50,12 +50,11 @@ public class UpgradeManager : MonoBehaviour
     }
 
     public void UpgradeEvolve() {
-        if (currentEvolveUpgrade.IsMaxLevel || ScoreManager.Instance.Score < currentBallUpgrade.upgradeCost)
+        if (CurrentEvolveUpgrade.IsMaxLevel)
             return;
 
-        currentEvolveUpgrade = currentEvolveUpgrade.nextUpgrade;
-        OnEvolveUpgrade?.Invoke(currentEvolveUpgrade);
-        ScoreManager.Instance.DecrementScore(currentBallUpgrade.upgradeCost);
+        CurrentEvolveUpgrade = CurrentEvolveUpgrade.nextUpgrade;
+        OnEvolveUpgrade?.Invoke(CurrentEvolveUpgrade);
     }
 
     public void UpgradeIncome() {
