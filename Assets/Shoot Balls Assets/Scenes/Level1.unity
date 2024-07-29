@@ -1064,11 +1064,6 @@ Transform:
   - {fileID: 565855729}
   m_Father: {fileID: 1646364347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &100205210 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7850065499062656915, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
-  m_PrefabInstance: {fileID: 4781269564369354273}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &119175551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,8 +1868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBallUpgrade: {fileID: 11400000, guid: f6e7056e9858fd54da854c6f2d35731e, type: 2}
-  currentEvolveUpgrade: {fileID: 0}
-  currentIncomeUpgrade: {fileID: 0}
+  currentEvolveUpgrade: {fileID: 11400000, guid: 8cdff6210703bf44587b09640ce6a20c, type: 2}
+  currentIncomeUpgrade: {fileID: 11400000, guid: bdb58c0edb19e2e4cba85b8aa5785434, type: 2}
 --- !u!4 &252483410
 Transform:
   m_ObjectHideFlags: 0
@@ -2670,7 +2665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &366381956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2756,17 +2751,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1294581440399263867, guid: f9d918cc27434a64ea67f101d27876a6, type: 3}
   m_PrefabInstance: {fileID: 539946865}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &379324509 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4781269564360073928, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
-  m_PrefabInstance: {fileID: 4781269564369354273}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &388441130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4942,7 +4926,7 @@ GameObject:
   - component: {fileID: 599244942}
   - component: {fileID: 599244944}
   m_Layer: 5
-  m_Name: BonusButton
+  m_Name: NextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5050,7 +5034,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 599244942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 814406063}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &605143468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6654,8 +6650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BackgroundMusic>k__BackingField: {fileID: 8300000, guid: 4e9bff56ee93c6f42b214141e44e763d, type: 3}
-  <WinGameSFX>k__BackingField: {fileID: 0}
-  <LoseGameSFX>k__BackingField: {fileID: 0}
+  <WinGameSFX>k__BackingField: {fileID: 8300000, guid: 4e9bff56ee93c6f42b214141e44e763d, type: 3}
+  <LoseGameSFX>k__BackingField: {fileID: 8300000, guid: 4e9bff56ee93c6f42b214141e44e763d, type: 3}
 --- !u!4 &814406064
 Transform:
   m_ObjectHideFlags: 0
@@ -8583,8 +8579,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 252483409}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+      - m_Target: {fileID: 1761704472}
+        m_TargetAssemblyTypeName: UpgradeButton, Assembly-CSharp
         m_MethodName: UpgradeBall
         m_Mode: 1
         m_Arguments:
@@ -9009,7 +9005,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1069693700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1761704472}
+        m_TargetAssemblyTypeName: UpgradeButton, Assembly-CSharp
+        m_MethodName: UpgradeIncome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1073898644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8460228000150637551, guid: 83dbded502a46ec4bb74eb0ec688fb93, type: 3}
@@ -11709,11 +11717,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1946977577611177810, guid: 13fdceb702a1e104e9aa6eaa3cdab2a1, type: 3}
   m_PrefabInstance: {fileID: 1317782486}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1322497358 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4972873113008118239, guid: 09b2c7645a6dd5d41b0a4f7c145c6423, type: 3}
-  m_PrefabInstance: {fileID: 4781269564369354273}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1328177721
 PrefabInstance:
@@ -14879,13 +14882,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1761704470}
   - component: {fileID: 1761704471}
+  - component: {fileID: 1761704472}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1761704470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14932,18 +14936,30 @@ MonoBehaviour:
   ballSprite: {fileID: 148658837}
   ballMoneySprite: {fileID: 1700237396}
   ballMoneyAmountText: {fileID: 389735470}
-  evolveUpgradeArrow: {fileID: 0}
-  evolveText: {fileID: 0}
-  evolveUpgradeAmountText: {fileID: 0}
-  evolveSprite: {fileID: 0}
-  evolveMoneySprite: {fileID: 0}
-  evolveMoneyAmountText: {fileID: 0}
-  incomeUpgradeArrow: {fileID: 0}
-  incomesText: {fileID: 0}
-  incomeUpgradeAmountText: {fileID: 0}
-  incomeSprite: {fileID: 0}
-  incomeMoneySprite: {fileID: 0}
-  incomeMoneyAmountText: {fileID: 0}
+  evolveUpgradeArrow: {fileID: 1929726150}
+  evolveText: {fileID: 1847617757}
+  evolveUpgradeAmountText: {fileID: 1909488098}
+  evolveSprite: {fileID: 1608799031}
+  evolveMoneySprite: {fileID: 1606120624}
+  evolveMoneyAmountText: {fileID: 1487464675}
+  incomeUpgradeArrow: {fileID: 1081539977}
+  incomesText: {fileID: 411241377}
+  incomeUpgradeAmountText: {fileID: 1430932443}
+  incomeSprite: {fileID: 2034485700}
+  incomeMoneySprite: {fileID: 1137476938}
+  incomeMoneyAmountText: {fileID: 1194411683}
+--- !u!114 &1761704472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761704469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b336eaf06655541887956b0672d690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1769323086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15463,82 +15479,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 379324509}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 5
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1322497358}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 897baa1b393d3ef4d933248f68d8bf6b, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 100205210}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 897baa1b393d3ef4d933248f68d8bf6b, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1487464675}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MAX
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1606120622}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1909488098}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 2
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1847617755}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1761704472}
+        m_TargetAssemblyTypeName: UpgradeButton, Assembly-CSharp
+        m_MethodName: UpgradeEvolve
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17102,6 +17046,7 @@ GameObject:
   - component: {fileID: 1958387495}
   - component: {fileID: 1958387494}
   - component: {fileID: 1958387496}
+  - component: {fileID: 1958387497}
   m_Layer: 5
   m_Name: Start Game Event Trigger
   m_TagString: Untagged
@@ -17183,18 +17128,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 814406063}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: StartGame
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 366381955}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -17207,6 +17140,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1958387497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958387491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6636a03ba4383c844b955a482d120bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1965384417
 GameObject:
   m_ObjectHideFlags: 0
@@ -20133,5 +20078,5 @@ SceneRoots:
   - {fileID: 4781269564369354273}
   - {fileID: 814406064}
   - {fileID: 428290291}
-  - {fileID: 1476909195}
   - {fileID: 252483410}
+  - {fileID: 1476909195}

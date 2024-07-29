@@ -1,6 +1,6 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShooterLevelUI : MonoBehaviour
@@ -12,21 +12,31 @@ public class ShooterLevelUI : MonoBehaviour
 
 
     void OnEnable() {
-        Shooter.OnShooterExperienceChanged += UpdateShooterLevelUI;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        GameManager.OnShooterExperienceChanged += UpdateShooterLevelUI;
     }
 
     void OnDisable() {
-        Shooter.OnShooterExperienceChanged -= UpdateShooterLevelUI;
+        GameManager.OnShooterExperienceChanged -= UpdateShooterLevelUI;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
 
-    void UpdateShooterLevelUI(float points, GameObject[] particles) {
-        for (int i = 0; i < particles.Length; i++)
-        {
-            GameObject particle = particles[i];
-            particle.transform.DOScale(6, 1.0f);
-            particle.transform.DOMove(movePositionRectTransform.transform.position, 1.0f).OnComplete(() => Destroy(particle));
-        }
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
+        SetShooterLevelUI();
+    }
+
+    void SetShooterLevelUI() {
+        shooterLevelSlider.fillAmount = GameManager.Instance.ShooterExperience;
+    }
+
+    void UpdateShooterLevelUI(float points) {
+        //for (int i = 0; i < particles.Length; i++)
+        //{
+        //    GameObject particle = particles[i];
+        //    particle.transform.DOScale(6, 1.0f);
+        //    particle.transform.DOMove(movePositionRectTransform.transform.position, 1.0f).OnComplete(() => Destroy(particle));
+        //}
 
         shooterLevelSlider.fillAmount = points;
     }

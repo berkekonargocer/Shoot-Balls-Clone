@@ -12,19 +12,40 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public AudioClip WinGameSFX { get; private set; }
     [field: SerializeField] public AudioClip LoseGameSFX { get; private set; }
 
+    public static event Action<float> OnShooterExperienceChanged;
     public event Action OnStartGame;
     public event Action<float> OnLoseGame;
     public event Action<float> OnWinGame;
 
+    public float ShooterExperience { get; private set; } = 0.00f;
+    int _shooterLevel = 0;
     bool isGameOver = false;
 
     public float BallPower { get; private set; } = 0.5f;
 
 
+    void OnEnable() {
+        Shooter.OnScored += IncreaseShooterExperience;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable() {
+        Shooter.OnScored -= IncreaseShooterExperience;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Awake() {
         InitializeSingleton();
     }
 
+    void IncreaseShooterExperience(float increaseAmount) {
+        ShooterExperience += increaseAmount / 100;
+        OnShooterExperienceChanged?.Invoke(ShooterExperience);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) {
+        isGameOver = false;
+    }
 
     public void StartGame() {
         OnStartGame?.Invoke();
@@ -55,6 +76,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

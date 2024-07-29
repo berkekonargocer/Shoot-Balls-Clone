@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public static Action<float, GameObject[]> OnScored;
-    public static event Action<float, GameObject[]> OnShooterExperienceChanged;
+    public static Action<float> OnScored;
 
     [SerializeField] BasketballBar basketballBar;
     [SerializeField] PlayerAnimator playerAnimator;
@@ -20,8 +19,6 @@ public class Shooter : MonoBehaviour
     Basketball _currentBall;
     RaycastHit[] _targetables = new RaycastHit[1];
 
-    float _shooterExperience = 0.00f;
-    int _shooterLevel = 0;
     bool _canDoubleShoot = false;
 
     const float BASE_SHOOT_DURATION = 0.6f;
@@ -29,11 +26,11 @@ public class Shooter : MonoBehaviour
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
 
     void OnEnable() {
-        OnScored += IncreaseShooterExperience;
+        
     }
 
     void OnDisable() {
-        OnScored -= IncreaseShooterExperience;
+        //OnScored -= IncreaseShooterExperience;
     }
 
     public void ChangeShootDuration(float changeAmount, float changeDuration) {
@@ -89,10 +86,7 @@ public class Shooter : MonoBehaviour
         ballRigidbody.AddForce(transform.forward * FREE_SHOOT_SPEED_MULTIPLIER * speedMultiplier, ForceMode.Impulse);
     }
 
-    void IncreaseShooterExperience(float increaseAmount, GameObject[] particles) {
-        _shooterExperience += increaseAmount / 100;
-        OnShooterExperienceChanged?.Invoke(_shooterExperience, particles);
-    }
+
 
     IEnumerator ChangeShootDurationCoroutine(float changeAmount, float changeDuration) {
         ShootDuration -= changeAmount;

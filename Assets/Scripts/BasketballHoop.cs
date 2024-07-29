@@ -74,7 +74,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
     void ScorePoint(Basketball ball) {
         pointsToScore -= ball.Point;
-        Shooter.OnScored?.Invoke(ball.Point, SpawnParticles());
+        Shooter.OnScored?.Invoke(ball.Point);
         pointText.text = pointsToScore.ToString();
     }
 
@@ -89,6 +89,7 @@ public class BasketballHoop : MonoBehaviour, ITargetable
 
         return newParticles;
     }
+
     void ScoreAnimation() {
         transform.DOScale(scaleAnimVector, 0.1f).OnComplete(() => transform.DOScale(Vector3.one, 0.1f));
     }
