@@ -16,6 +16,7 @@ public class DistancePowerUp : MonoBehaviour, ITargetable
     public bool IsMoving { get; } = false;
     public bool IsTargeted { get; }
 
+
     void Awake() {
         distanceAmountText.text = "+" + powerUpAmount.ToString();
     }

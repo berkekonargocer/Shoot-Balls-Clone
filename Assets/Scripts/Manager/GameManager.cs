@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [field: SerializeField] public AudioClip BackgroundMusic { get; private set; }
-    [field: SerializeField] public AudioClip WinGameSFX { get; private set; }
-    [field: SerializeField] public AudioClip LoseGameSFX { get; private set; }
-
     public static event Action<float> OnShooterExperienceChanged;
     public event Action OnStartGame;
     public event Action<float> OnLoseGame;
@@ -55,12 +51,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() {
         OnStartGame?.Invoke();
-        AudioManager.Instance.PlayMusic(BackgroundMusic);
     }
 
     public void WinGame() {
-        AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlaySFX(WinGameSFX);
         OnWinGame?.Invoke(ScoreManager.Instance.Score);
     }
 
@@ -69,8 +62,6 @@ public class GameManager : MonoBehaviour
             return;
 
         isGameOver = true;
-        AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlaySFX(LoseGameSFX);
         OnLoseGame?.Invoke(ScoreManager.Instance.Score);
     }
 

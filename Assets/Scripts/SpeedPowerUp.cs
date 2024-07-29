@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpeedPowerUp : MonoBehaviour, ITargetable
 {
 
-    [SerializeField] float powerUpDuration = 5.0f;
+    //[SerializeField] float powerUpDuration = 5.0f;
     [SerializeField] Transform targetTransform;
     [SerializeField] TextMeshPro speedAmountText;
     [SerializeField] float powerUpAmount = 15.0f;

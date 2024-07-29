@@ -17,7 +17,6 @@ namespace NOJUMPO
         public float Income { get; private set; } = 25.0f;
 
 
-        // ------------------------- UNITY BUILT-IN METHODS ------------------------
         void OnEnable() {
             UpgradeManager.Instance.OnIncomeUpgrade += OnIncomeUpgrade;
         }
@@ -31,7 +30,6 @@ namespace NOJUMPO
         }
 
 
-        // ------------------------- CUSTOM PUBLIC METHODS -------------------------
         public void SetScore(float newScore) {
             Score = newScore;
             OnScoreChanged?.Invoke(Score);
@@ -48,8 +46,6 @@ namespace NOJUMPO
         }
 
 
-
-        // ------------------------- CUSTOM PRIVATE METHODS ------------------------
         void OnIncomeUpgrade(Upgradeable upgradeable) {
             Income *= upgradeable.currentLevelValue;
         }

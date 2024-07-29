@@ -103,7 +103,7 @@ public class BasketballBar : MonoBehaviour
         SpawnAnimation(newBall);
     }
 
-    private void SpawnAnimation(Basketball newBall) {
+    void SpawnAnimation(Basketball newBall) {
         newBall.transform.localScale = Vector3.zero;
         newBall.transform.DOScale(new Vector3(0.875f, 0.875f, 0.875f), instantiateBallScaleDuration);
     }
