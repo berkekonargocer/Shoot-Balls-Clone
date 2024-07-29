@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StartGameTrigger : MonoBehaviour, IBeginDragHandler
+public class StartGameDragTrigger : MonoBehaviour, IBeginDragHandler
 {
     public void OnBeginDrag(PointerEventData eventData) {
         GameManager.Instance.StartGame();
