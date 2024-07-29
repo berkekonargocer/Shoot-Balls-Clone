@@ -25,17 +25,23 @@ public class GameManager : MonoBehaviour
 
 
     void OnEnable() {
-        Shooter.OnScored += IncreaseShooterExperience;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Shooter.OnScored += IncreaseShooterExperience;
+        UpgradeManager.Instance.OnBallUpgrade += SetBallPower;
     }
 
     void OnDisable() {
-        Shooter.OnScored -= IncreaseShooterExperience;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Shooter.OnScored -= IncreaseShooterExperience;
+        UpgradeManager.Instance.OnBallUpgrade -= SetBallPower;
     }
 
     void Awake() {
         InitializeSingleton();
+    }
+
+    void SetBallPower(Upgradeable upgradeable) {
+        BallPower = upgradeable.currentLevelValue;
     }
 
     void IncreaseShooterExperience(float increaseAmount) {

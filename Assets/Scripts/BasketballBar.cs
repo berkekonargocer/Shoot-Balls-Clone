@@ -17,6 +17,26 @@ public class BasketballBar : MonoBehaviour
     int _currentSpawnIndex = 0;
 
 
+    void OnEnable() {
+        UpgradeManager.Instance.OnBallUpgrade += SetInitialBallPoint;
+    }
+
+    void OnDisable() {
+        UpgradeManager.Instance.OnBallUpgrade -= SetInitialBallPoint;
+
+    }
+
+
+    public void SetInitialBallPoint(Upgradeable upgradeable) {
+        for (int i = 0; i < BallPositions.Length; i++)
+        {
+            BallPoints[i] = upgradeable.currentLevelValue;
+        }
+
+        RemoveAllBalls();
+        RespawnInitialBalls();
+    }
+
     public void SetBallPoints(float[] points) {
         List<float> newPointsList = new List<float>(points.Length + BallPoints.Length);
         newPointsList.AddRange(BallPoints);
@@ -47,6 +67,24 @@ public class BasketballBar : MonoBehaviour
         return ball;
     }
 
+    void RespawnInitialBalls() {
+        for (int i = 0; i < BallPositions.Length; i++)
+        {
+            Basketball newBall = SpawnBall(BallPositions[_currentSpawnIndex].transform.position, BallPositions[_currentSpawnIndex].transform);
+            newBall.SetPoint(BallPoints[_currentSpawnIndex]);
+            basketballs.Add(newBall);
+
+            if (_currentSpawnIndex < BallPoints.Length - 1)
+            {
+                _currentSpawnIndex++;
+            }
+            else
+            {
+                _currentSpawnIndex = 0;
+            } 
+        }
+    }
+
     void SpawnNewBall() {
         Basketball newBall = SpawnBall(BallPositions[3].transform.position, BallPositions[3].transform);
         newBall.SetPoint(BallPoints[_currentSpawnIndex]);
@@ -68,6 +106,15 @@ public class BasketballBar : MonoBehaviour
     private void SpawnAnimation(Basketball newBall) {
         newBall.transform.localScale = Vector3.zero;
         newBall.transform.DOScale(new Vector3(0.875f, 0.875f, 0.875f), instantiateBallScaleDuration);
+    }
+
+    void RemoveAllBalls() {
+        foreach (var b in basketballs)
+        {
+            Destroy(b.gameObject);
+        }
+
+        basketballs.Clear();
     }
 
     void ReorderBalls() {

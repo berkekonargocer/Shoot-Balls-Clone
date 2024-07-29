@@ -1,4 +1,5 @@
 using System;
+using NOJUMPO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -47,27 +48,30 @@ public class UpgradeManager : MonoBehaviour
 
 
     public void UpgradeBall() {
-        if (currentBallUpgrade.IsMaxLevel)
+        if (currentBallUpgrade.IsMaxLevel || ScoreManager.Instance.Score < currentBallUpgrade.upgradeCost)
             return;
 
         currentBallUpgrade = currentBallUpgrade.nextUpgrade;
         OnBallUpgrade?.Invoke(currentBallUpgrade);
+        ScoreManager.Instance.DecrementScore(currentBallUpgrade.upgradeCost);
     }
 
     public void UpgradeEvolve() {
-        if (currentEvolveUpgrade.IsMaxLevel)
+        if (currentEvolveUpgrade.IsMaxLevel || ScoreManager.Instance.Score < currentBallUpgrade.upgradeCost)
             return;
 
         currentEvolveUpgrade = currentEvolveUpgrade.nextUpgrade;
         OnEvolveUpgrade?.Invoke(currentEvolveUpgrade);
+        ScoreManager.Instance.DecrementScore(currentBallUpgrade.upgradeCost);
     }
 
     public void UpgradeIncome() {
-        if (currentIncomeUpgrade.IsMaxLevel)
+        if (currentIncomeUpgrade.IsMaxLevel || ScoreManager.Instance.Score < currentBallUpgrade.upgradeCost)
             return;
 
         currentIncomeUpgrade = currentIncomeUpgrade.nextUpgrade;
         OnIncomeUpgrade?.Invoke(currentIncomeUpgrade);
+        ScoreManager.Instance.DecrementScore(currentBallUpgrade.upgradeCost);
     }
 
 

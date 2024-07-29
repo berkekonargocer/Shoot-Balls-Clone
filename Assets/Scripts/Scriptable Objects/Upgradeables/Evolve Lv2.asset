@@ -17,4 +17,5 @@ MonoBehaviour:
   <currentLevelValue>k__BackingField: 2
   <upgradeCost>k__BackingField: 0
   <sprite>k__BackingField: {fileID: 21300000, guid: 88d4ec7914fc4c543b95615bc086d271, type: 3}
+  <ShooterEvolveMaterial>k__BackingField: {fileID: 2100000, guid: 897baa1b393d3ef4d933248f68d8bf6b, type: 2}
   <IsMaxLevel>k__BackingField: 1

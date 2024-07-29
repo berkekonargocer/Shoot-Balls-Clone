@@ -9,5 +9,8 @@ public class Upgradeable : ScriptableObject
     [field: SerializeField] public float nextLevelValue { get { return nextUpgrade.currentLevelValue; } }
     [field: SerializeField] public float upgradeCost { get; private set; }
     [field: SerializeField] public Sprite sprite { get; private set; }
+    [field: SerializeField] public Material ShooterEvolveMaterial { get; private set; }
     [field: SerializeField] public bool IsMaxLevel { get; private set; }
+
+
 }

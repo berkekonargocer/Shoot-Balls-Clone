@@ -18,6 +18,14 @@ namespace NOJUMPO
 
 
         // ------------------------- UNITY BUILT-IN METHODS ------------------------
+        void OnEnable() {
+            UpgradeManager.Instance.OnIncomeUpgrade += OnIncomeUpgrade;
+        }
+
+        void OnDisable() {
+            UpgradeManager.Instance.OnIncomeUpgrade -= OnIncomeUpgrade;
+        }
+
         void Awake() {
             InitializeSingleton();
         }
@@ -42,6 +50,10 @@ namespace NOJUMPO
 
 
         // ------------------------- CUSTOM PRIVATE METHODS ------------------------
+        void OnIncomeUpgrade(Upgradeable upgradeable) {
+            Income *= upgradeable.currentLevelValue;
+        }
+
         void InitializeSingleton() {
             if (Instance == null)
             {

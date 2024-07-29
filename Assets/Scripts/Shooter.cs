@@ -13,6 +13,9 @@ public class Shooter : MonoBehaviour
     [SerializeField] Transform targetableCheckPosition;
     [SerializeField] LayerMask targetableLayer;
 
+    [SerializeField] SkinnedMeshRenderer Tshirt;
+    [SerializeField] SkinnedMeshRenderer Short;
+
     public float ShootDuration { get; private set; } = 0.6f;
     [field: SerializeField] public float ShootDistance { get; set; } = 12;
 
@@ -26,11 +29,16 @@ public class Shooter : MonoBehaviour
     const int FREE_SHOOT_SPEED_MULTIPLIER = 12;
 
     void OnEnable() {
-        
+        UpgradeManager.Instance.OnEvolveUpgrade += OnEvolveUpgrade;
     }
 
     void OnDisable() {
-        //OnScored -= IncreaseShooterExperience;
+        UpgradeManager.Instance.OnEvolveUpgrade -= OnEvolveUpgrade;
+    }
+
+    void OnEvolveUpgrade(Upgradeable upgradeable) {
+        Tshirt.material = upgradeable.ShooterEvolveMaterial;
+        Short.material = upgradeable.ShooterEvolveMaterial;
     }
 
     public void ChangeShootDuration(float changeAmount, float changeDuration) {
