@@ -21,6 +21,16 @@ public class DistancePowerUp : MonoBehaviour, ITargetable
         distanceAmountText.text = "+" + powerUpAmount.ToString();
     }
 
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+            other.GetComponent<Shooter>().ChangeShootDistance(powerUpAmount);
+            transform.DOScale(0, 0.15f);
+            Destroy(gameObject, 0.2f);
+        }
+    }
+    
     public Vector3 OnTargeted(Transform player) {
         if (targetTransform != null)
         {
@@ -42,16 +52,6 @@ public class DistancePowerUp : MonoBehaviour, ITargetable
         if (ball != null)
         {
             Destroy(ball.gameObject);
-        }
-    }
-
-    void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Player"))
-        {
-            gameObject.GetComponent<Collider>().enabled = false;
-            other.GetComponent<Shooter>().ChangeShootDistance(powerUpAmount);
-            transform.DOScale(0, 0.15f);
-            Destroy(gameObject, 0.2f);
         }
     }
 }
