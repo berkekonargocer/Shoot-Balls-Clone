@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Shoot Balls Assets/Scenes/Level1.unity
+    guid: befe20e4796709e4b94f7a285448bdc5
   m_configObjects: {}
